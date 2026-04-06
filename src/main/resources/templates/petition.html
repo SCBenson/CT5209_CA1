@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${petition.title} + ' - Sean''s Petitions'">Petition</title>
+    <style>
+        body {font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;}
+        nav {background: #2c3e50; padding: 10px 20px; margin-bottom: 20px; border-radius: 5px; }
+        nav a { color: white; text-decoration: none; margin-right: 15px;}
+        .sign-form {background: #ecf0f1; padding: 20px; border-radius: 5px; margin-top: 20px;}
+        input {padding: 10px; margin-bottom: 10px; width: 100%; box-sizing: border-box;}
+        button {background: #e74c3c; color: white; border: none; padding: 12px 30px; cursor: pointer; border-radius: 5px; font-size: 1em;}
+        .signature-list {margin-top: 20px;}
+        .signature-item {padding: 5px 0; border-bottom: 1px solid #eee;}
+        h1 { color: #2c3e50;}
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/create">Create Partition</a>
+        <a href="/search">Search</a>
+    </nav>
+    <h1 th:text="${petition.title}">Title</h1>
+    <p th:text="${petition.description}">Description</p>
+    <p><strong th:text="${petition.signatureCount} + ' people have signed'">0 people have signed</strong></p>
+
+    <div class="sign-form">
+        <h3>Sign this Petition</h3>
+        <form method="post" th:action="@{/petition/{id}/sign(id=${petition.id})">
+            <label>Your Name:</label>
+            <input type="text" name="name" required/>
+            <label>Your Email:</label>
+            <input type="email" name="email" required/>
+            <button type="submit">Sign Petition</button>
+        </form>
+    </div>
+
+    <div class="signature-list">
+        <h3>Signatures</h3>
+        <div th:each="sig : ${petition.signatures}" class="signature-item">
+            <span th:text="${sig.name}">Name</span> -- <span th:text="${sig.email}">email</span>
+        </div>
+    </div>
+</body>
+</html>

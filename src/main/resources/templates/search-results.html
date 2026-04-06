@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results - Sean's Petitions</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        nav { background: #2c3e50; padding: 10px 20px; margin-bottom: 20px; border-radius: 5px; }
+        nav a { color: white; text-decoration: none; margin-right: 15px; }
+        .petition-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 5px; }
+        .petition-card a { text-decoration: none; color: #2c3e50; }
+        h1 { color: #2c3e50; }
+    </style>
+
+</head>
+<body>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/create">Create Petition</a>
+        <a href="/search">Search</a>
+    </nav>
+
+    <h1>Search Results for "<span th:text="${query}">query</span>"</h1>
+
+    <p th:if="${#lists.isEmpty(results)}">
+        No petitions found matching your search criteria.
+    </p>
+
+    <div th:each="p : ${results}" class="petition-card">
+        <a th:href="@{/petition/{id}(id=${p.id})}">
+            <h3 th:text="${p.title}">Title</h3>
+            <p th:text="${p.description}">Description</p>
+        </a>
+    </div>
+    <a href="/search">Search again</a>
+</body>
+</html>
