@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sean's Petitions</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;}
+      nav {background: #2c3e50; padding: 10px 20px; margin-bottom: 20px; border-radius: 5px;}
+      nav a {color: white; text-decoration: none; margin-right: 15px;}
+       .petition-card {border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 5px;}
+       .petition-card:hover {background: #f9f9f9;}
+       .petition-card a {text-decoration: none; color: #2c3e50;}
+       .badge {background: #3498db; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.8em;}
+       h1 {color: #2c3e50;}
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/create">Create Petition</a>
+        <a href="/search">Search</a>
+    </nav>
+    <h1>All Petitions</h1>
+    <div th:each="p : ${petitions}" class="petition-card">
+      <a th:href="@{petition/{id}(id=${p.id})}">
+        <h3 th:text="${p.title}">Petition Title</h3>
+        <p th:text="${p.description}">Petition Description</p>
+        <span class="badge" th:text="${p.signatureCount} + ' signatures'">0 Signatures</span>
+      </a>
+    </div>
+
+</body>
+</html>
