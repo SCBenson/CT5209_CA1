@@ -10,7 +10,7 @@ pipeline {
         stage('Get Code from Github') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/SCBenson/seanspetitions.git'
+                    url: 'https://github.com/SCBenson/CT5209_CA1.git'
             }
         }
 
