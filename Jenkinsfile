@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none
 
     tools {
         maven 'Maven'  // Must match the name configured in Jenkins Global Tool Config
@@ -8,6 +8,7 @@ pipeline {
 
     stages {
         stage('Get Code from Github') {
+            agent any
             steps {
                 git branch: 'main',
                     url: 'https://github.com/SCBenson/CT5209_CA1.git'
@@ -15,46 +16,53 @@ pipeline {
         }
 
         stage('Build') {
+            agent any
             steps {
                 sh 'mvn clean compile'
             }
         }
 
         stage('Test') {
+            agent any
             steps {
                 sh 'mvn test'
             }
         }
 
         stage('Package') {
+            agent any
             steps {
                 sh 'mvn package -DskipTests'
                 archiveArtifacts artifacts: 'target/seanspetitions.war', fingerprint: true
             }
         }
 
+        stage('Approve Deployment'){
+            steps{
+                input message: 'Deploy to Production', ok: 'Yes, deploy!'
+            }
+        }
+
         stage('Deploy to Tomcat') {
+            agent any
             steps {
-                input message: 'Deploy to production?', ok: 'Yes, deploy!'
-                deploy adapters: [
-                    tomcat9(
-                        url: 'http://localhost:9090',
-                        credentialsId: 'tomcat-deployer',
-                        path: ''
-                    )
-                ],
-                contextPath: '/seanspetitions',
-                war: 'target/seanspetitions.war'
+                sh 'sudo cp target/seanspetitions.war /opt/tomcat/webapps/'
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline completed successfully!'
+            node(''){
+                echo 'Pipeline completed successfully!'
+            }
+
         }
         failure {
-            echo 'Pipeline failed!'
+            node(''){
+                echo 'Pipeline failed!'
+            }
+
         }
     }
 }
