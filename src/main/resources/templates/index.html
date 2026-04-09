@@ -16,9 +16,9 @@
 </head>
 <body>
     <nav>
-        <a href="/">Home</a>
-        <a href="/create">Create Petition</a>
-        <a href="/search">Search</a>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{@}{/create}">Create Petition</a>
+        <a th:href="@{/search}">Search</a>
     </nav>
     <h1>All Petitions</h1>
     <div th:each="p : ${petitions}" class="petition-card">
