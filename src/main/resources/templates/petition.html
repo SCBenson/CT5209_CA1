@@ -27,7 +27,7 @@
 
     <div class="sign-form">
         <h3>Sign this Petition</h3>
-        <form method="post" th:action="@{/petition/{id}/sign(id=${petition.id})">
+        <form method="post" th:action="@{/petition/{id}/sign(id=${petition.id})}">
             <label>Your Name:</label>
             <input type="text" name="name" required/>
             <label>Your Email:</label>
