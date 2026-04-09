@@ -46,7 +46,7 @@ pipeline {
         stage('Deploy to Tomcat') {
             agent any
             steps {
-                sh 'sudo cp target/seanspetitions.war /opt/tomcat9/webapps/'
+                sh 'sudo cp target/seanspetitions.war /opt/tomcat10/webapps/'
             }
         }
     }
