@@ -10,27 +10,22 @@
         input, textarea {width: 100%; padding: 10px; margin-bottom: 10px; box-sizing: border-box;}
         button {background: #27ae60; color: white; border: none; padding: 12px 30px; cursor: pointer; border-radius}
         h1 {color: #2c3e50;}
-
-
-
     </style>
 </head>
 <body>
     <nav>
-        <a href="/">Home</a>
-        <a href="/create">Create a Petition</a>
-        <a href="/search">Search</a>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/create}">Create a Petition</a>
+        <a th:href="@{/search}">Search</a>
     </nav>
 
     <h1>Create a New Petition</h1>
-    <form method="post" action="/create">
+    <form method="post" th:action="@{/create}">
         <label>Title:</label>
         <input type="text" name="title" required/>
         <label>Description:</label>
         <textarea name="description" required></textarea>
         <button type="submit">Create Petition</button>
     </form>
-
-
 </body>
 </html>
