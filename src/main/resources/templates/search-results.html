@@ -16,9 +16,9 @@
 <body>
 
     <nav>
-        <a href="/">Home</a>
-        <a href="/create">Create Petition</a>
-        <a href="/search">Search</a>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/create}">Create Petition</a>
+        <a th:href="@{/search}">Search</a>
     </nav>
 
     <h1>Search Results for "<span th:text="${query}">query</span>"</h1>
@@ -33,6 +33,6 @@
             <p th:text="${p.description}">Description</p>
         </a>
     </div>
-    <a href="/search">Search again</a>
+    <a th:href="@{/search}">Search again</a>
 </body>
 </html>
