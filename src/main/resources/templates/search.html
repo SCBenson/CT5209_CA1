@@ -14,13 +14,13 @@
 </head>
 <body>
     <nav>
-        <a href="/">Home</a>
-        <a href="/create">Create Petition</a>
-        <a href="/search">Search</a>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/create}">Create Petition</a>
+        <a th:href="@{/search}">Search</a>
     </nav>
 
     <h1>Search Petitions</h1>
-    <form method="get" action="/search/results">
+    <form method="get" th:action="@{/search/results}">
         <input type="text" name="query" placeholder="Search by title or description..." required />
         <button type="submit">Search</button>
     </form>
