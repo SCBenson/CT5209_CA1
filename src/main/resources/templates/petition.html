@@ -17,9 +17,9 @@
 </head>
 <body>
     <nav>
-        <a href="/">Home</a>
-        <a href="/create">Create Partition</a>
-        <a href="/search">Search</a>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/create}">Create Partition</a>
+        <a th:href="@{/search}">Search</a>
     </nav>
     <h1 th:text="${petition.title}">Title</h1>
     <p th:text="${petition.description}">Description</p>
