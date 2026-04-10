@@ -42,7 +42,7 @@ public class Petition{
         this.description = description;
     }
 
-    public List<Signature> getSignature() {
+    public List<Signature> getSignatures() {
         return signatures;
     }
 
