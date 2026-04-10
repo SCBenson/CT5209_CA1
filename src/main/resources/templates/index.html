@@ -22,7 +22,7 @@
     </nav>
     <h1>All Petitions</h1>
     <div th:each="p : ${petitions}" class="petition-card">
-      <a th:href="@{petition/{id}(id=${p.id})}">
+      <a th:href="@{/petition/{id}(id=${p.id})}">
         <h3 th:text="${p.title}">Petition Title</h3>
         <p th:text="${p.description}">Petition Description</p>
         <span class="badge" th:text="${p.signatureCount} + ' signatures'">0 Signatures</span>
