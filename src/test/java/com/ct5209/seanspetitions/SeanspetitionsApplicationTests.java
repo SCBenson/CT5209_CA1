@@ -25,7 +25,7 @@ class SeanspetitionsApplicationTests {
 		Petition p = new Petition(1, "Test", "Desc");
 		p.addSignature(new Signature("John", "john@test.com"));
 		assertEquals(1, p.getSignatureCount());
-		assertEquals("John", p.getSignature().get(0).getName());
+		assertEquals("John", p.getSignatures().get(0).getName());
 	}
 
 }
